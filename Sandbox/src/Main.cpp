@@ -11,6 +11,7 @@ public:
 	}
 
 	Vector2 playerPos = { 2, 2 };
+	Input* key = new Input;
 
 	virtual void OnUpdate() override
 	{
@@ -21,13 +22,13 @@ public:
 
 		Renderer::Draw(playerPos, 'X');
 
-		if (playerPos.y == 2 && playerPos.x < 18)
+		if ( playerPos.x < 18 && key->IsKeyPressed(KEY_RIGHT_ARROW))
 			playerPos.x++;
-		else if (playerPos.x == 18 && playerPos.y < 8)
+		else if ( playerPos.y <= 8 && key->IsKeyPressed(KEY_DOWN_ARROW))
 			playerPos.y++;
-		else if (playerPos.y == 8 && playerPos.x > 2)
+		else if (playerPos.x > 2 && key->IsKeyPressed(KEY_LEFT_ARROW))
 			playerPos.x--;
-		else if (playerPos.x == 2 && playerPos.y > 2)
+		else if ( playerPos.y >= 2 && key->IsKeyPressed(KEY_UP_ARROW))
 			playerPos.y--;
 	}
 };
